@@ -31,7 +31,7 @@
 }
 
 *{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%;scroll-behavior:smooth}
 body{
   margin:0;
   background:var(--paper);
@@ -48,7 +48,7 @@ a{color:inherit}
 .wrap{width:min(1120px,100% - 48px);margin-inline:auto}
 @media(max-width:640px){.wrap{width:min(1120px,100% - 32px)}}
 
-:where(a,button,input,summary):focus-visible{
+:where(a,button,input,summary,[tabindex="-1"]):focus-visible{
   outline:3px solid var(--brass);
   outline-offset:3px;
 }
@@ -286,11 +286,40 @@ a{color:inherit}
   font-size:14px;color:var(--bone-soft);max-width:64ch;
 }
 
+/* ---------- наверх ---------- */
+.back-top{
+  position:fixed;right:max(18px,env(safe-area-inset-right));
+  bottom:max(18px,env(safe-area-inset-bottom));z-index:20;
+  display:inline-flex;align-items:center;gap:8px;min-height:48px;padding:11px 17px;
+  border:2px solid var(--moss);border-radius:999px;
+  background:var(--brass);color:var(--moss);
+  font:inherit;font-size:15px;font-weight:800;line-height:1;text-decoration:none;
+  box-shadow:0 8px 24px rgba(56,42,38,.24);
+}
+.back-top:hover{background:#F0C16F}
+.back-top.is-enhanced{
+  opacity:0;visibility:hidden;pointer-events:none;transform:translateY(10px);
+}
+.back-top.is-enhanced.is-visible{
+  opacity:1;visibility:visible;pointer-events:auto;transform:none;
+}
+.back-top:focus-visible{
+  outline:3px solid var(--bone);outline-offset:3px;
+  box-shadow:0 0 0 6px var(--moss),0 8px 24px rgba(56,42,38,.24);
+}
+.back-top-icon{font-size:20px;line-height:.7}
+@media(max-width:640px){
+  .back-top{right:12px;bottom:calc(12px + env(safe-area-inset-bottom));min-height:46px;padding:10px 14px}
+  .foot{padding-bottom:96px}
+}
+
 @media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
   *{transition:none!important;animation:none!important}
 }
 @media(prefers-reduced-motion:no-preference){
   .tongue{transition:left .12s ease-out}
+  .back-top{transition:opacity .18s ease,visibility .18s ease,transform .18s ease,background-color .18s ease}
 }
 </style>
 </head>
@@ -312,7 +341,7 @@ a{color:inherit}
 <main>
 <section class="hero">
   <div class="wrap">
-    <h1>Ошейник подбирают по шее, а не по буквам S, M и L.</h1>
+    <h1 id="top" tabindex="-1">Ошейник подбирают по шее, а не по буквам S, M и L.</h1>
     <p class="lead">Мастерская в Барнауле для собак и кошек. Приходите с питомцем на двадцать минут: снимем мерки в трёх точках, проверим посадку на ремнях разной ширины и отдадим карточку размеров. С ней вы купите ошейник где угодно и не промахнётесь.</p>
 
     <div class="tool-head">
@@ -512,6 +541,11 @@ a{color:inherit}
   </div>
 </footer>
 
+<a class="back-top" href="#top" aria-label="Вернуться наверх">
+  <span class="back-top-icon" aria-hidden="true">↑</span>
+  <span>Наверх</span>
+</a>
+
 <script>
 (function(){
   var neck   = document.getElementById('neck');
@@ -586,6 +620,27 @@ a{color:inherit}
     document.querySelectorAll('input[name="coat"]'),
     function(el){ el.addEventListener('change', render); }
   );
+
+  var backTop = document.querySelector('.back-top');
+  var pageTop = document.getElementById('top');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function updateBackTop(){
+    var show = window.scrollY > Math.min(520, window.innerHeight * .75);
+    backTop.classList.toggle('is-visible', show);
+    backTop.setAttribute('aria-hidden', show ? 'false' : 'true');
+    backTop.tabIndex = show ? 0 : -1;
+  }
+
+  backTop.classList.add('is-enhanced');
+  updateBackTop();
+  window.addEventListener('scroll', updateBackTop, {passive:true});
+  window.addEventListener('resize', updateBackTop);
+  backTop.addEventListener('click', function(event){
+    event.preventDefault();
+    pageTop.focus({preventScroll:true});
+    window.scrollTo({top:0,behavior:reduceMotion.matches ? 'auto' : 'smooth'});
+  });
 
   render();
 })();
