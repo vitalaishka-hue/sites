@@ -5,27 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Мерка — ошейники для собак и кошек в Барнауле</title>
 <meta name="description" content="Подбираем ошейники для собак и кошек по шее. Защита от клещей и блох, свечение в темноте и точная посадка. Демонстрационная страница.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%2326301F'/%3E%3Ccircle%20cx='16'%20cy='16'%20r='8'%20fill='none'%20stroke='%23C9A227'%20stroke-width='3.5'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%23382A26'/%3E%3Ccircle%20cx='16'%20cy='16'%20r='8'%20fill='none'%20stroke='%23E2AE58'%20stroke-width='3.5'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --paper:#E4E6DE;
-  --paper-deep:#D8DBD0;
-  --moss:#26301F;
-  --moss-lift:#33402A;
-  --ink:#1C221A;
-  --ink-soft:#4A5344;
-  --bone:#EFEBDD;
-  --bone-soft:#B9BCAC;
-  --tan:#A9703B;
-  --tan-deep:#8A5A2F;
-  --brass:#C9A227;
-  --rust:#7A3B2E;
+  --paper:#F7F0E8;
+  --paper-deep:#EED2C4;
+  --sage:#BBC8B4;
+  --moss:#382A26;
+  --moss-lift:#4A3731;
+  --ink:#2C2320;
+  --ink-soft:#5D4840;
+  --bone:#F7F0E8;
+  --bone-soft:#D8C9C0;
+  --tan:#AE7259;
+  --tan-deep:#704335;
+  --brass:#E2AE58;
+  --rust:#7E4B3B;
   --strap-h:64px;
   --pad:28px;
-  --edge:1px solid rgba(28,34,26,.18);
+  --edge:1px solid rgba(44,35,32,.18);
   --font:"Golos Text","Segoe UI",system-ui,-apple-system,sans-serif;
 }
 
@@ -95,14 +96,15 @@ a{color:inherit}
   height:var(--strap-h);
   border-radius:6px;
   background:
-    linear-gradient(180deg,rgba(255,255,255,.16),rgba(0,0,0,.22)),
+    linear-gradient(180deg,rgba(255,255,255,.24),rgba(56,42,38,.2)),
     var(--tan);
   border:1px solid var(--tan-deep);
+  box-shadow:0 0 22px rgba(226,174,88,.14);
 }
 .strap::after{ /* прострочка по краям ремня */
   content:"";position:absolute;inset:9px 12px;
-  border-top:2px dashed rgba(239,235,221,.4);
-  border-bottom:2px dashed rgba(239,235,221,.4);
+  border-top:2px dashed rgba(247,240,232,.48);
+  border-bottom:2px dashed rgba(247,240,232,.48);
   pointer-events:none;
 }
 
@@ -117,14 +119,14 @@ a{color:inherit}
 .tongue{
   position:absolute;top:-13px;bottom:-13px;width:34px;margin-left:-17px;
   border-radius:5px;
-  background:linear-gradient(180deg,#F0DC96,#E8CE72 30%,var(--brass) 55%,#8E6F14);
-  border:1px solid #6E560F;
+  background:linear-gradient(180deg,#F8DDA3,#EBC47B 30%,var(--brass) 55%,#9B6C2E);
+  border:1px solid #795323;
   box-shadow:0 2px 6px rgba(0,0,0,.45);
 }
 .tongue::before{ /* прорезь бегунка: ремень виден насквозь */
   content:"";position:absolute;left:7px;right:7px;top:15px;bottom:15px;
   border-radius:2px;
-  background:rgba(60,38,10,.55);
+  background:rgba(70,42,31,.58);
   box-shadow:inset 0 1px 2px rgba(0,0,0,.5);
 }
 
@@ -150,7 +152,7 @@ a{color:inherit}
 .row{
   display:flex;justify-content:space-between;align-items:baseline;gap:16px;
   padding:11px 0;
-  border-bottom:1px solid rgba(239,235,221,.16);
+  border-bottom:1px solid rgba(247,240,232,.18);
 }
 .row dt{color:var(--bone-soft);font-size:15px}
 .row dd{margin:0;font-weight:600;text-align:right}
@@ -163,7 +165,7 @@ a{color:inherit}
 .coat input{position:absolute;opacity:0;width:0;height:0}
 .coat label{
   padding:9px 16px;border-radius:999px;
-  border:1px solid rgba(239,235,221,.3);
+  border:1px solid rgba(247,240,232,.34);
   color:var(--bone-soft);font-size:15px;cursor:pointer;
 }
 .coat input:checked + label{
@@ -183,7 +185,7 @@ a{color:inherit}
   padding:15px 30px;border:none;border-radius:4px;
   text-decoration:none;cursor:pointer;
 }
-.cta:hover{background:#DDB63A}
+.cta:hover{background:#F0C16F}
 
 /* ---------- разделы ---------- */
 .band{padding:88px 0}
@@ -201,7 +203,7 @@ a{color:inherit}
 @media(max-width:720px){.def{grid-template-columns:1fr;gap:6px}}
 
 /* ---------- возможности ---------- */
-.abilities{background:var(--paper-deep)}
+.abilities{background:var(--sage)}
 .ability-list{border-top:var(--edge)}
 .ability{
   display:grid;grid-template-columns:minmax(170px,4fr) 9fr;gap:8px 40px;
@@ -235,7 +237,7 @@ a{color:inherit}
 .tails h2{max-width:16ch}
 .tails .band-sub{color:var(--bone-soft)}
 .tail-notes{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:42px 24px}
-.tail-note{margin:0;padding-top:22px;border-top:1px solid rgba(239,235,221,.28)}
+.tail-note{margin:0;padding-top:22px;border-top:1px solid rgba(247,240,232,.3)}
 .tail-note:nth-child(1){grid-column:1 / span 7}
 .tail-note:nth-child(2){grid-column:7 / span 6}
 .tail-note:nth-child(3){grid-column:3 / span 7}
@@ -271,16 +273,16 @@ a{color:inherit}
 .foot{background:var(--moss);color:var(--bone);padding:80px 0 40px}
 .foot h2{font-size:clamp(26px,3.6vw,40px);max-width:18ch;margin-bottom:20px}
 .foot p{color:var(--bone-soft);max-width:52ch}
-.contacts{margin-top:40px;border-top:1px solid rgba(239,235,221,.18)}
+.contacts{margin-top:40px;border-top:1px solid rgba(247,240,232,.2)}
 .contact{
   display:flex;justify-content:space-between;gap:16px;
-  padding:14px 0;border-bottom:1px solid rgba(239,235,221,.18);
+  padding:14px 0;border-bottom:1px solid rgba(247,240,232,.2);
   max-width:520px;
 }
 .contact span:first-child{color:var(--bone-soft)}
 .disclaimer{
   margin-top:44px;padding-top:20px;
-  border-top:1px solid rgba(239,235,221,.18);
+  border-top:1px solid rgba(247,240,232,.2);
   font-size:14px;color:var(--bone-soft);max-width:64ch;
 }
 
