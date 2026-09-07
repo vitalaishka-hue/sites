@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Мерка — мастерская подбора ошейников</title>
-<meta name="description" content="Снимаем мерки с собаки и подбираем ошейник по шее: ширина, форма ремня, застёжка. Демонстрационная страница.">
+<title>Мерка — ошейники для собак и кошек в Барнауле</title>
+<meta name="description" content="Подбираем ошейники для собак и кошек по шее. Защита от клещей и блох, свечение в темноте и точная посадка. Демонстрационная страница.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='7'%20fill='%2326301F'/%3E%3Ccircle%20cx='16'%20cy='16'%20r='8'%20fill='none'%20stroke='%23C9A227'%20stroke-width='3.5'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -200,6 +200,17 @@ a{color:inherit}
 .def p{color:var(--ink-soft);max-width:62ch}
 @media(max-width:720px){.def{grid-template-columns:1fr;gap:6px}}
 
+/* ---------- возможности ---------- */
+.abilities{background:var(--paper-deep)}
+.ability-list{border-top:var(--edge)}
+.ability{
+  display:grid;grid-template-columns:minmax(170px,4fr) 9fr;gap:8px 40px;
+  align-items:baseline;padding:25px 0;border-bottom:var(--edge);
+}
+.ability strong{font-size:clamp(22px,3vw,34px);line-height:1;color:var(--tan-deep)}
+.ability p{color:var(--ink-soft);max-width:62ch}
+@media(max-width:720px){.ability{grid-template-columns:1fr;gap:8px}}
+
 .steps{counter-reset:s;border-top:var(--edge)}
 .step{
   display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:8px 24px;
@@ -217,6 +228,25 @@ a{color:inherit}
   .step{grid-template-columns:44px minmax(0,1fr);}
   .step::before{font-size:24px}
   .step-time{grid-column:2;font-size:14px}
+}
+
+/* ---------- голоса хвостатых ---------- */
+.tails{background:var(--moss);color:var(--bone)}
+.tails h2{max-width:16ch}
+.tails .band-sub{color:var(--bone-soft)}
+.tail-notes{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:42px 24px}
+.tail-note{margin:0;padding-top:22px;border-top:1px solid rgba(239,235,221,.28)}
+.tail-note:nth-child(1){grid-column:1 / span 7}
+.tail-note:nth-child(2){grid-column:7 / span 6}
+.tail-note:nth-child(3){grid-column:3 / span 7}
+.tail-note blockquote{margin:0}
+.tail-note blockquote p{font-size:clamp(21px,2.8vw,32px);font-weight:800;line-height:1.2;letter-spacing:-.02em}
+.tail-note blockquote p::before{content:"«";color:var(--brass)}
+.tail-note blockquote p::after{content:"»";color:var(--brass)}
+.tail-note figcaption{margin-top:13px;color:var(--bone-soft);font-size:14px}
+@media(max-width:720px){
+  .tail-notes{grid-template-columns:1fr;gap:34px}
+  .tail-note:nth-child(n){grid-column:1}
 }
 
 .price{background:var(--paper-deep)}
@@ -267,9 +297,11 @@ a{color:inherit}
 <header class="top">
   <div class="wrap top-in">
     <div class="mark">Мерка<span>.</span></div>
-    <nav class="top-nav">
+    <nav class="top-nav" aria-label="Разделы страницы">
+      <a href="#vozmozhnosti">Что умеет</a>
       <a href="#smotrim">Что смотрим</a>
       <a href="#primerka">Примерка</a>
+      <a href="#hvostatye">Хвостатые</a>
       <a href="#ceny">Цены</a>
     </nav>
   </div>
@@ -279,7 +311,7 @@ a{color:inherit}
 <section class="hero">
   <div class="wrap">
     <h1>Ошейник подбирают по шее, а не по буквам S, M и L.</h1>
-    <p class="lead">Мастерская в Барнауле. Приходите с собакой на двадцать минут: снимем мерки в трёх точках, проверим посадку на ремнях разной ширины и отдадим карточку размеров. С ней вы купите ошейник где угодно и не промахнётесь.</p>
+    <p class="lead">Мастерская в Барнауле для собак и кошек. Приходите с питомцем на двадцать минут: снимем мерки в трёх точках, проверим посадку на ремнях разной ширины и отдадим карточку размеров. С ней вы купите ошейник где угодно и не промахнётесь.</p>
 
     <div class="tool-head">
       <h2>Прикиньте размер прямо сейчас</h2>
@@ -290,8 +322,8 @@ a{color:inherit}
       <div class="strap">
         <div class="holes" id="holes" aria-hidden="true"></div>
         <div class="tongue-track" aria-hidden="true"><div class="tongue" id="tongue"></div></div>
-        <input class="range" id="neck" type="range" min="20" max="65" step="1" value="38"
-               aria-label="Обхват шеи собаки в сантиметрах">
+        <input class="range" id="neck" type="range" min="15" max="65" step="1" value="38"
+               aria-label="Обхват шеи питомца в сантиметрах">
       </div>
       <div class="scale" id="scale" aria-hidden="true"></div>
     </div>
@@ -318,10 +350,32 @@ a{color:inherit}
   </div>
 </section>
 
+<section class="band abilities" id="vozmozhnosti">
+  <div class="wrap">
+    <h2>Что умеет ошейник</h2>
+    <p class="band-sub">Посадка остаётся главным. К ней добавляются функции для прогулок и повседневной жизни.</p>
+
+    <div class="ability-list">
+      <div class="ability">
+        <strong>Собакам и кошкам</strong>
+        <p>Подбираем ошейники питомцам обоих видов — по шее, шерсти и привычному движению, а не только по размерной букве.</p>
+      </div>
+      <div class="ability">
+        <strong>Защита</strong>
+        <p>Ошейник выполняет функцию защиты от клещей и блох.</p>
+      </div>
+      <div class="ability">
+        <strong>Свет в темноте</strong>
+        <p>Ошейник светится и помогает заметить и найти питомца в темноте.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section class="band" id="smotrim">
   <div class="wrap">
     <h2>Что мы смотрим на примерке</h2>
-    <p class="band-sub">Обхват — только первое из четырёх. Две собаки с одинаковой шеей нередко уходят с разными ремнями.</p>
+    <p class="band-sub">Обхват — только первое из четырёх. Два питомца с одинаковой шеей нередко уходят с разными ремнями.</p>
 
     <div class="defs">
       <div class="def">
@@ -382,6 +436,28 @@ a{color:inherit}
   </div>
 </section>
 
+<section class="band tails" id="hvostatye" aria-labelledby="tails-title">
+  <div class="wrap">
+    <h2 id="tails-title">Слово хвостатым</h2>
+    <p class="band-sub">Это игровая перекличка от лица вымышленных питомцев, а не проверенные отзывы покупателей.</p>
+
+    <div class="tail-notes">
+      <figure class="tail-note">
+        <blockquote><p>Сначала измерили шею. Потом я измерил носом всю мастерскую. Порядок правильный.</p></blockquote>
+        <figcaption>Вымышленный пёс, главный по любопытству</figcaption>
+      </figure>
+      <figure class="tail-note">
+        <blockquote><p>В темноте меня проще заметить. Но будем честны: прогулку всё равно веду я.</p></blockquote>
+        <figcaption>Вымышленная кошка, специалист по вечерним маршрутам</figcaption>
+      </figure>
+      <figure class="tail-note">
+        <blockquote><p>Клещам и блохам здесь не рады. А почёсывания за ухом принимаются без записи.</p></blockquote>
+        <figcaption>Вымышленный хвостатый, голос мастерской</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <section class="band price" id="ceny">
   <div class="wrap">
     <h2>Цены</h2>
@@ -420,8 +496,8 @@ a{color:inherit}
 
 <footer class="foot" id="zapis">
   <div class="wrap">
-    <h2>Приходите с собакой</h2>
-    <p>Запишитесь заранее: в мастерской одновременно бывает только одна собака, чтобы никто не нервничал.</p>
+    <h2>Приходите с питомцем</h2>
+    <p>Запишитесь заранее: в мастерской одновременно бывает только один питомец, чтобы никто не нервничал.</p>
 
     <div class="contacts">
       <div class="contact"><span>Телефон</span><span>+7 000 000-00-00</span></div>
